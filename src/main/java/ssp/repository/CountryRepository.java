@@ -10,7 +10,7 @@ public interface CountryRepository {
 
 	public List<RecepiesShortInfo> getRecepiesOfCountry(Long countryId);
 	
-	public CountryDto addCountry(Country country);
+	public Country addCountry(Country country);
 	
 	public List<CountryDto> getAllCountries();
 	

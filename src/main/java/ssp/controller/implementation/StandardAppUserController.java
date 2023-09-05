@@ -25,67 +25,67 @@ public class StandardAppUserController implements AppUserController {
 	@Autowired
 	AppUserService appUserService;
 	
-	@GetMapping("/appuser/all")
+	@GetMapping("/appusers")
 	@Override
 	public ResponseEntity<?> getAllAppUsers() {
 		return this.appUserService.getAllAppUsers();
 	}
 
-	@GetMapping("/get/appuser/{appUserId}")
+	@GetMapping("/appusers/{appUserId}")
 	@Override
 	public ResponseEntity<?> getAppUserById(@PathVariable("appUserId") Long appUserId) {
 		return this.appUserService.getAppUserById(appUserId);
 	}
 
-	@PostMapping("/create/appuser")
+	@PostMapping("/appusers/appuser")
 	@Override
 	public ResponseEntity<?> createAppUser(@RequestBody AppUser appUser) {
 		return this.appUserService.createAppUser(appUser);
 	}
 
-	@PatchMapping("/update/appuser/{appUserId}")
+	@PatchMapping("/appusers/{appUserId}")
 	@Override
 	public ResponseEntity<?> updateAppUserById(@PathVariable("appUserId") Long appUserId, @RequestBody AppUser appUser) {
 		return this.appUserService.updateAppUserById(appUserId, appUser);
 	}
 
-	@PostMapping("/create/image/appuser")
+	@PostMapping("/appusers/appuser/image")
 	@Override
 	public ResponseEntity<?> addImageToAppUser(@RequestBody AppUserImage image) {
 		return this.appUserService.addImageToAppUser(image);
 	}
 
-	@DeleteMapping("/delete/appuser/{appUserId}")
+	@DeleteMapping("/appusers/{appUserId}")
 	@Override
 	public ResponseEntity<?> deleteAppUserById(@PathVariable("appUserId") Long appUserId) {
 		return this.appUserService.deleteAppUserById(appUserId);
 	}
 
-	@DeleteMapping("/delete/image/appuser/{appUserId}")
+	@DeleteMapping("/appusers/{appUserId}/image")
 	@Override
 	public ResponseEntity<?> deleteAppUserImage(@PathVariable("appUserId") Long appUserId) {
 		return this.appUserService.deleteAppUserImage(appUserId);
 	}
 
-	@PostMapping("/like/appuser")
+	@PostMapping("/appusers/appuser/like")
 	@Override
 	public ResponseEntity<?> likeRecepie(@RequestBody Like like) {
 		return this.appUserService.likeRecepie(like);
 	}
 
-	@DeleteMapping("/delete/like/appuser")
+	@DeleteMapping("/appusers/appuser/like")
 	@Override
 	public ResponseEntity<?> unlikeRecepie(@RequestBody Like like) {
 		return this.appUserService.unlikeRecepie(like);
 	}
 
-	@PostMapping("/comment/appuser")
+	@PostMapping("/appusers/appuser/comment")
 	@Override
 	public ResponseEntity<?> addComment(@RequestBody Comment comment) {
 		return this.appUserService.addComment(comment);
 	}
 
-	@DeleteMapping("/delete/commment/appuser")
+	@DeleteMapping("/appusers/appuser/comment")
 	@Override
 	public ResponseEntity<?> deleteComment(@RequestBody Comment comment) {
 		return this.appUserService.deleteComment(comment);

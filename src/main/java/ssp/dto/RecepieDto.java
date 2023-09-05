@@ -31,7 +31,7 @@ public class RecepieDto {
 	
 	private List<ImageDto> images;
 	
-	private String appUserUserName;
+	private AppUserShortInfo appUser;
 	
 	private ImageDto appUserImage;
 	

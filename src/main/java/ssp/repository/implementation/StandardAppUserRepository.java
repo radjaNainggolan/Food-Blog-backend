@@ -36,9 +36,14 @@ public class StandardAppUserRepository implements AppUserRepository {
 	@Autowired
 	AppUserDtoRowMapper appUserDtoRowMapper;
 	
+	private final String selectAllAppUsers = 
+			"""
+				SELECT * FROM app_user
+			""";
+	
 	private final String createUser = 	"""
 										INSERT INTO app_user(
-										email, first_name, last_name, password)
+										email, first_name, last_name, password, user_name)
 										VALUES (?, ?, ?, ?, ?);
 										""";
 	
@@ -74,7 +79,7 @@ public class StandardAppUserRepository implements AppUserRepository {
 			""";
 	
 	private final String unlikeRecepie = """
-			DELETE FROM liked_recepies WHERE app_user_id = ? and recepie_id = ?
+			DELETE FROM liked_recepies WHERE app_user_id = ? AND recepie_id = ?
 			""";
 	
 	private final String likeRecepie = """
@@ -82,11 +87,11 @@ public class StandardAppUserRepository implements AppUserRepository {
 			""";
 	
 	private final String deleteAppUserById = """
-			DELETE FROM app_user_id WHERE id = ?
+			DELETE FROM app_user WHERE id = ?
 			""";	
 	
 	private final String updateUserById = """
-			UPDATE app_user_id set first_name = ?, last_name = ?,  
+			UPDATE app_user SET first_name = ?, last_name = ?, email = ?, password = ?, user_name = ? WHERE id = ?
 			""";
 	
 	private final String numberOfLikesOfRecepie = """
@@ -127,7 +132,7 @@ public class StandardAppUserRepository implements AppUserRepository {
 	@Override
 	public List<AppUserDto> getAllAppUsers() {
 		
-		List<AppUserDto> list = jdbcTemplate.query(selectAppUser, appUserDtoRowMapper);
+		List<AppUserDto> list = jdbcTemplate.query(selectAllAppUsers, appUserDtoRowMapper);
 		
 		for(AppUserDto appUserDto:list) {
 			ImageDto imageDto = getAppUserImage(appUserDto.getId());
@@ -221,7 +226,7 @@ public class StandardAppUserRepository implements AppUserRepository {
 		int res = numberOfAppUsersById(appUserId);
 		
 		if(res != 0) {
-			int res1 = jdbcTemplate.update(updateUserById,appUser.getFirstName());
+			int res1 = jdbcTemplate.update(updateUserById,appUser.getFirstName(), appUser.getLastName(), appUser.getEmail(), appUser.getPassword(), appUser.getUserName(), appUserId);
 			return res1;
 		}else {
 			return 0;

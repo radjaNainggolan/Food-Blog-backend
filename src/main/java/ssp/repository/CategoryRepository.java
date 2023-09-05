@@ -8,7 +8,7 @@ import ssp.model.Category;
 
 public interface CategoryRepository {
 
-	public List<RecepiesShortInfo> getRecepiesOfCategory();
+	public List<RecepiesShortInfo> getRecepiesOfCategory(Long categoryId);
 	
 	public List<CategoryDto> getAllCategories();
 	
@@ -17,6 +17,10 @@ public interface CategoryRepository {
 	public int updateCategoryById(Long categoryId, Category category);
 	
 	public int deleteCategoryById(Long categoryId);
+	
+	public int numberOfCategoriesById(Long categoryId);
+	
+	public Category createCategory(Category category);
 	
 	
 }

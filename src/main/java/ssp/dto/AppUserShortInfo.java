@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentDto {
+public class AppUserShortInfo {
 
-	private String appUserUserName;
+	private Long id;
+	
+	private String userName;
 	
 	private byte[] image;
 	
-	private String text;
 	
 }
